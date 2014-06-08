@@ -9,13 +9,10 @@ load_and_clean_data <- function(directory = ".", filename = "household_power_con
 
   # convert date and time to a datetime column
   df$datetime <- apply(df, 1, function(row){ 
-   strptime( paste(row[1], row[2], sep=" "), "%d/%m/%Y %H:%M:%S" )  
+   d <- as.POSIXct( paste(row[1], row[2], sep=" "), format="%d/%m/%Y %H:%M:%S" ) 
+   strftime(d, format="%Y-%m-%d %H:%M:%S")
   })
   df
-#  as.data.frame(df)
-  #df$day <- apply(df, 1, function(row){
-  #  as.Date( row[1], "%d/%m/%Y" )
-  #})
 }
                    
   
